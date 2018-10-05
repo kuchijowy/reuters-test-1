@@ -19,6 +19,7 @@
         <input type="button" value="x" id="btnMultiple" onclick="Calculate('x');" style="background: white" />
         <input type="button" value="/" id="btnDivide" onclick="Calculate('/');" style="background: white" />
         <input type="button" value="POW" id="btnPow" onclick="Calculate('pow');" style="background: white" />
+        <input type="button" value="SPEC" id="btnSpec" onclick="Calculate('spec');" style="background:white" />
     </div>
     <div>
         Result <input type="text" id="tbxResult" disabled />
@@ -31,9 +32,7 @@
     <script>
         // You can also require other files to run in this process
         require('./renderer.js')
-        const os = require('os');
         const storage = require('electron-json-storage');
-        const defaultDataPath = storage.getDefaultDataPath();
 
         function Calculate(calType) {
             if (!isNaN(document.getElementById('tbxA').value) & !isNaN(document.getElementById('tbxB').value)) {
@@ -66,6 +65,11 @@
                         } else {
                             alert('Can not use power operation becaust result is not number.');
                         }
+                        break;
+                    case 'spec':
+                        highlight('btnSpec');
+                        let specialNumber = 3.1416592;
+                        result = ((valA + valB) * specialNumber / 2);
                         break;
                     default:
                         break;
